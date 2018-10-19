@@ -32,4 +32,4 @@ app.delete('/todos/done', routes.todos.removeDoneTodos)
 app.delete('/todos/:id', routes.todos.removeTodo)
 
 app.use(errorhandler())
-app.listen(3000)
+app.listen(process.env.PORT || 5000)

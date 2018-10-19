@@ -1,11 +1,5 @@
-api/node_modules
-api/dist
-web/node_modules
-node_modules
-
 .DS_Store
 node_modules
-/dist
 
 # local env files
 .env.local
