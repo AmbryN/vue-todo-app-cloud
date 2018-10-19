@@ -1,0 +1,11 @@
+html, .container-fluid {
+    background-color: rgb(241, 239, 239);
+}
+
+#todo-app {
+    margin-top: 100px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
