@@ -4,6 +4,10 @@ CRUD Todo App using :
 * On client side : Vue, Vuex, axios, HTML, Bootstrap 4
 * On server side : Node.js, Express, MongoDB, Mongoose
 
+# Coming soon
+* Authentification
+* User specific todos
+
 ## Getting Started
 
 * Clone the repository
@@ -22,6 +26,7 @@ CRUD Todo App using :
 * [Express.js](https://expressjs.com/) - Web Framework
 * [MongoDB](https://www.mongodb.com/) - NoSQL Database
 * [Mongoose](https://mongoosejs.com/) - ODM
+* [Heroku](https://www.heroku.com/) - Cloud Web Hosting
 
 ## Authors
 
