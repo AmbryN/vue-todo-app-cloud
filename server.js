@@ -18,18 +18,18 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/todos', routes.todos.getTodos)
-app.post('/todos', routes.todos.addTodo)
-app.put('/todos/:id', routes.todos.updateTodo)
+app.get('/api/todos', routes.todos.getTodos)
+app.post('/api/todos', routes.todos.addTodo)
+app.put('/api/todos/:id', routes.todos.updateTodo)
 // Define the header for the options method, which is called before every delete
-app.options('/todos/:id', (req, res, next) => {
+app.options('/api/todos/:id', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type');
     next()
 })
-app.delete('/todos/done', routes.todos.removeDoneTodos)
-app.delete('/todos/:id', routes.todos.removeTodo)
+app.delete('/api/todos/done', routes.todos.removeDoneTodos)
+app.delete('/api/todos/:id', routes.todos.removeTodo)
 
 app.use(errorhandler())
 app.listen(process.env.PORT || 5000)

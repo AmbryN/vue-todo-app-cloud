@@ -42,7 +42,7 @@ export default new Vuex.Store({
     },
     actions: {
         getTodosFromAPI (context) {
-            axios.get("todos")
+            axios.get("/api/todos")
                 .then(response => {
                     context.commit('getTodos', response.data)
                 })
@@ -55,7 +55,7 @@ export default new Vuex.Store({
             }
 
             // POST it to server and into DB
-            axios.post("todos", newTodo)
+            axios.post("/api/todos", newTodo)
                 .then(response => {
                 context.commit('addTodo', response.data)
                 })
@@ -69,7 +69,7 @@ export default new Vuex.Store({
             updatedTodo.done = !updatedTodo.done
 
             // PUT it to server and into DB
-            axios.put(`/todos/${id}`, updatedTodo)
+            axios.put(`api/todos/${id}`, updatedTodo)
                     .then(response => {
                     console.log(response.data)
                     context.commit('updateTodo', response.data)
@@ -77,12 +77,12 @@ export default new Vuex.Store({
                     .catch(error => console.log(error))
         },
         deleteTodo (context, id) {
-            axios.delete(`/todos/${id}`)
+            axios.delete(`api/todos/${id}`)
                 .catch(error => console.log(error))
             context.commit('deleteTodo', id)
         },
         deleteDoneTodos (context) {
-            axios.delete('/todos/done')
+            axios.delete('api/todos/done')
                 .catch(error => console.log(error))
             context.commit('deleteDoneTodos')
         }
