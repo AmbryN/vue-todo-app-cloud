@@ -19,13 +19,9 @@ import { mapState } from "vuex"
 
 export default {
     name: 'TodoList',
-    mounted () {
-        // Populate the store with todos from the DB
-        this.getTodosFromAPI()
-    },
     computed: {
         ...mapState([
-            'todos'
+            'todos', 'isAuthenticated'
         ]),
         hasDoneTodos () {
             for(let i=0; i<this.todos.length; i++) {
