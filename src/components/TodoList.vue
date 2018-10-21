@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="row">
-        <button @click.stop="deleteDoneTodos()" class="btn btn-warning mx-auto mt-1">Delete done todos</button>
+        <button v-if="hasDoneTodos" @click.stop="deleteDoneTodos()" class="btn btn-warning mx-auto mt-1">Delete done todos</button>
     </div>
     <div class="row">
         <div v-if="todos.length > 0" class="col-10 offset-1 col-md-2 mx-auto mt-3">
