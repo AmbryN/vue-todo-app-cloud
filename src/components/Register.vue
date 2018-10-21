@@ -42,6 +42,14 @@ export default {
         confirmation: ""
       }
   },
+  computed: {
+    isEmail () {
+        if (this.email.search('@') != -1) {
+            return true
+        } 
+        else return false
+    }
+  },
   methods: {
       register () {
           if (this.isEmail) {

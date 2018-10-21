@@ -14,10 +14,10 @@
                     <input v-model="password" type="password" id="password" class="form-control" placeholder="Enter password">
                 </div>
             </div>
-            <div class="col-12 col-md-4 offset-md-2">
+            <div class="col-12 col-md-4 offset-md-2 mt-1">
                 <button @click.stop="login" class="btn btn-primary btn-block">Login</button>
             </div>
-            <div class="col-12 col-md-4 d-none d-sm-block">
+            <div class="col-12 col-md-4 mt-1">
                 <button @click.stop="register" class="btn btn-primary btn-block">Register</button>
             </div>
         </div>

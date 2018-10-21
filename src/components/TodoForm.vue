@@ -1,13 +1,16 @@
 <template>
   <div class="row">
     <div class="col-md-12">
-      <h1>Todo-App</h1>
-    </div>
-    <div class="col-md-8 offset-md-2">
-        <form id="form" class="form-group">
+      <form>
+        <div class="form-group row mt-2">
+          <div class="ml-auto">
             <input id="todo" type="text" placeholder="New todo" autocomplete="off" class="form-control" v-model="name"/>
-            <button @click.prevent="addTodo(name)" id="add-btn" class="btn btn-primary mt-2">Add</button>
-        </form>
+          </div>
+          <div class="mr-auto ml-1">
+            <button @click.prevent="addTodo(name)" id="add-btn" class="btn btn-primary">Add</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>

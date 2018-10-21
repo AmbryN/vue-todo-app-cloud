@@ -4,17 +4,5 @@ html, .container-fluid {
 }    
 
 #todo-app {
-    margin-top: 100px;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-
-#login {
-    margin-top: 100px;
-    background-color: rgb(255, 255, 255);
-    padding: 50px;
-    border: 1px solid black;
-    border-radius: 10px;
+    margin-top: 50px;
 }

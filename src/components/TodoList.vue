@@ -1,15 +1,17 @@
 <template>
-<div class="row">
-    <div v-if="hasDoneTodos" class="col-md-5 mx-auto">
-        <button @click.stop="deleteDoneTodos()" class="btn btn-warning btn-block ml-auto">Delete done todos</button>
+<div>
+    <div class="row">
+        <button @click.stop="deleteDoneTodos()" class="btn btn-warning mx-auto mt-1">Delete done todos</button>
     </div>
-    <div v-if="todos.length > 0" class="mt-3 col-md-8 offset-md-2">
-        <ul class="list-group">
-            <li v-for="todo in todos" :class="{ disabled:todo.done }" 
-                @click="updateTodo(todo._id)" class="list-group-item text-center d-flex" :key="todo._id">
-                    <i v-if="todo.done" class="material-icons">check</i>{{todo.name}} <button @click.stop="deleteTodo(todo._id)" class="btn btn-danger ml-auto">Delete</button>
-            </li>
-        </ul>
+    <div class="row">
+        <div v-if="todos.length > 0" class="col-10 offset-1 col-md-2 mx-auto mt-3">
+            <ul class="list-group">
+                <li v-for="todo in todos" :class="{ disabled:todo.done }" 
+                    @click="updateTodo(todo._id)" class="list-group-item text-center d-flex mt-1" :key="todo._id">
+                        <i v-if="todo.done" class="material-icons">check</i>{{todo.name}} <button @click.stop="deleteTodo(todo._id)" class="btn btn-danger ml-auto">Delete</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </template>

@@ -8,7 +8,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li v-if="!isAuthenticated" class="nav-item">
-            <a class="nav-link" href="#" @click.stop="login">Login</a>
+            <a class="nav-link" href="#"><router-link to="/login">Login</router-link></a>
+          </li>
+          <li v-if="!isAuthenticated" class="nav-item">
+            <a class="nav-link" href="#"><router-link to="/register">Register</router-link></a>
           </li>
           <li v-if="isAuthenticated" class="nav-item">
             <a class="nav-link" href="#" @click.stop="logout">Logout</a>
@@ -47,9 +50,6 @@ export default {
     ]),
   },
   methods: {
-    login () {
-      this.$router.push('login')
-    },
     logout () {
       this.$store.dispatch('logout')
     }

@@ -1,9 +1,7 @@
 <template>
-  <div class="row">
-    <div id="todo-app" class="col-8 offset-2 col-md-4 offset-md-4 text-center">
-      <TodoForm></TodoForm>
-      <TodoList></TodoList>
-    </div>
+  <div>
+    <TodoForm></TodoForm>
+    <TodoList></TodoList>
   </div>
 </template>
 
