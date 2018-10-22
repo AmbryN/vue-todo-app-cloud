@@ -11,7 +11,7 @@ It allows :
 
 ## Try it out
 
-[Click here to try it out](https://vue-todo-na.appspot.com) - (Register or use following credentials **username: test** - **password: test**)
+[Click here to try it out](https://vue-todo-na.appspot.com) - (Register or use following credentials **email: test@test.com** - **password: test**)
 
 ## Built With
 
