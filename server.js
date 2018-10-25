@@ -26,7 +26,6 @@ const routes = require('./routes')
 const auth = routes.auth;
 app.post('/register', auth.optional, routes.user.createNewUser)
 app.post('/login', auth.optional, routes.user.loginUser)
-app.get('/users/current', auth.required, routes.user.getLoggedIn)
 
 // TODOS API
 app.use(function(req, res, next) {
