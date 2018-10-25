@@ -18,7 +18,7 @@
                 <button @click.stop="login" class="btn btn-primary btn-block">Login</button>
             </div>
             <div class="col-12 col-md-4 mt-1">
-                <button @click.stop="register" class="btn btn-primary btn-block">Register</button>
+                <button @click.stop="redirectToRegister" class="btn btn-primary btn-block">Register</button>
             </div>
         </div>
     </form>
@@ -31,15 +31,6 @@ import TodoList from './TodoList.vue'
 import { mapState } from 'vuex'
 export default {
   name: 'login',
-  components: {
-    
-  },
-  mounted () {
-    if (localStorage.getItem('user')){
-        let user = JSON.parse(localStorage.getItem('user'))
-        this.setLoggedInUser(user)
-    }
-  },
   data: () => {
       return {
         email: "",
@@ -58,29 +49,21 @@ export default {
     }
   },
   methods: {
-      login () {
-          if (this.isEmail) {
-            let data = {
-                user: {
-                    email: this.email,
-                    password: this.password
-                }
+    login () {
+        if (this.isEmail) {
+        let data = {
+            user: {
+                email: this.email,
+                password: this.password
             }
-            this.$store.dispatch('login', data)
-          }
-          else alert("Your email doesn't match the pattern name@domain.com")
-      },
-      setLoggedInUser (user) {
-          this.$store.dispatch('loggedIn', user)
-      },
-      register () {
-          this.$router.push('/register')
-      }
-  },
-  watch: {
-      isAuthenticated () {
-          if (this.isAuthenticated) this.$router.push('/')
-      }
+        }
+        this.$store.dispatch('login', data)
+        }
+        else alert("Your email doesn't match the pattern name@domain.com")
+    },
+    redirectToRegister () {
+        this.$router.push('/register')
+    }
   }
 }
 </script>

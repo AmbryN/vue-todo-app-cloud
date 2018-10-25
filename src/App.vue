@@ -31,11 +31,16 @@ import { mapState } from "vuex"
 export default {
   name: 'app',
   mounted () {
-    if (this.isAuthenticated) {
-      this.$router.push('app')
+    if (localStorage.getItem('user')){
+      let user = JSON.parse(localStorage.getItem('user'))
+      this.setLoggedInUser(user)
+    }
+    if (!this.isAuthenticated) {
+      this.$router.push('/login')
     }
     else {
-      this.$router.push('login')
+      this.$router.push('/')
+      this.getTodosFromAPI()
     }
   },
   watch: {
@@ -50,6 +55,12 @@ export default {
     ]),
   },
   methods: {
+    setLoggedInUser (user) {
+      this.$store.dispatch('loggedIn', user)
+    },
+    getTodosFromAPI () {
+      this.$store.dispatch('getTodosFromAPI')
+    },
     logout () {
       this.$store.dispatch('logout')
     }

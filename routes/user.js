@@ -74,20 +74,5 @@ module.exports = {
 
             return status(400).info;
         })(req, res, next);
-    },
-
-
-    //GET current route (required, only authenticated User have access)
-    getLoggedIn: (req, res, next) => {
-        const { payload: { id } } = req;
-
-        return User.findById(id)
-            .then((user) => {
-            if(!user) {
-                return res.sendStatus(400);
-            }
-
-            return res.json({ user: user.toAuthJSON() });
-            });
     }
 }

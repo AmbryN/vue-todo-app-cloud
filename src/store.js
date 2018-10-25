@@ -32,7 +32,6 @@ export default new Vuex.Store({
                     state.todos.splice(index, 1)
                 }
             })
-            
         },
         deleteDoneTodos (state) {
             for (let i = state.todos.length -1; i >= 0; i--){

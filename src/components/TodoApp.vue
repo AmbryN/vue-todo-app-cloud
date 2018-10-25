@@ -14,11 +14,6 @@ export default {
   name: 'todo-app',
   components: {
     TodoForm, TodoList
-  }, 
-  computed: {
-      ...mapState([
-      'isAuthenticated'
-    ]),
   }
 }
 </script>

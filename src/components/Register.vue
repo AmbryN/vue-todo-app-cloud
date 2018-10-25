@@ -32,9 +32,6 @@
 
 export default {
   name: 'register',
-  components: {
-    
-  },
   data: () => {
       return {
         email: "",

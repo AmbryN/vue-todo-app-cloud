@@ -25,9 +25,11 @@ export default {
   },
   methods: {
     addTodo (name) {
-      this.$store.dispatch('addTodo', name)
-      this.name = ""
-    },
+      if (this.name != "") {
+        this.$store.dispatch('addTodo', name)
+        this.name = ""
+      }
+    }
   }
 }
 </script>

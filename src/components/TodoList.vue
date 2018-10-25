@@ -23,7 +23,7 @@ export default {
     name: 'TodoList',
     computed: {
         ...mapState([
-            'todos', 'isAuthenticated'
+            'todos'
         ]),
         hasDoneTodos () {
             for(let i=0; i<this.todos.length; i++) {
@@ -35,9 +35,6 @@ export default {
         }
     },
     methods: {
-        getTodosFromAPI () {
-            this.$store.dispatch('getTodosFromAPI')
-        },
         addTodo (name) {
             this.$store.dispatch('addTodo', name)
         },
