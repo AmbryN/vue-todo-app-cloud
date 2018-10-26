@@ -43,9 +43,9 @@ export default new Vuex.Store({
         login (state, user) {
             state.isAuthenticated = true
             state.user = {
-                id: user._id,
+                _id: user._id,
                 email: user.email,
-                token: `Token ${user.token}`
+                token: `JWT ${user.token}`
             } 
             localStorage.setItem('user', JSON.stringify(state.user))
         },

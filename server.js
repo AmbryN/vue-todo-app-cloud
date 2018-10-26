@@ -1,5 +1,4 @@
 const express = require('express')
-const session = require('express-session')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const errorhandler = require('errorhandler')
@@ -11,21 +10,20 @@ let app = express()
 app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(express.static(__dirname + "/dist"))
-app.use(session({secret: process.env.SECRET, cookie: {maxAge: 60000}, resave: false, saveUninitialized: false }))
 
 mongoose.connect(process.env.MONGO_URI)
 
-// Models
+// Models and passport config
 require('./models/User')
 require('./config/passport')
 
 // ROUTES
 const routes = require('./routes')
 
-// AUTH
+// AUTH API
 const auth = routes.auth;
-app.post('/register', auth.optional, routes.user.createNewUser)
-app.post('/login', auth.optional, routes.user.loginUser)
+app.post('/register', routes.user.createNewUser)
+app.post('/login', routes.user.loginUser)
 
 // TODOS API
 app.use(function(req, res, next) {
@@ -49,5 +47,6 @@ app.delete('/api/todos/done', auth.required, routes.todos.removeDoneTodos)
 app.delete('/api/todos/:id', auth.required, routes.todos.removeTodo)
 
 app.use(errorhandler())
-app.listen(process.env.PORT || 5000)
-console.log("Server running on:"+process.env.PORT)
+let PORT = process.env.PORT || 5000
+app.listen(PORT)
+console.log("Server running on:"+PORT)

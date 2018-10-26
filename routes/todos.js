@@ -18,8 +18,7 @@ let Todo = mongoose.model('Todo', TodoSchema)
 
 module.exports = {
     getTodos (req, res, next) {
-        const { payload: { id } } = req
-        Todo.find({userId: id}, (err, todos) => {
+        Todo.find({userId: req.user._id}, (err, todos) => {
             if (err) return next(err)
             else res.status(200).send(todos)
         })

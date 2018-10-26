@@ -42,8 +42,7 @@ module.exports = {
 
     //POST login route (optional, everyone has access)
     loginUser: (req, res, next) => {
-        const { body: { user } } = req;
-
+        const { user } = req.body
         if(!user.email) {
             return res.status(422).json({
             errors: {
@@ -60,19 +59,18 @@ module.exports = {
             });
         }
 
-        return passport.authenticate('local', { session: false }, (err, passportUser, info) => {
-            if(err) {
-            return next(err);
+        User.findOne({ email: user.email }, (err, DBuser) => {
+            if (err) {
+                next(err)
             }
-
-            if(passportUser) {
-            const user = passportUser;
-            user.token = passportUser.generateJWT();
-
-            return res.json({ user: user.toAuthJSON() });
+            if (DBuser) {
+                
+                if (DBuser.validatePassword(user.password)) {
+                    return res.json({ user: DBuser.toAuthJSON()})
+                }
             }
-
-            return status(400).info;
-        })(req, res, next);
+            else return res.status(404).json({error: "User not found"})
+        })
+        
     }
 }
