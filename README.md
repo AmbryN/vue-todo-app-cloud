@@ -2,10 +2,10 @@
 
 Todo App using :
 * On client side : Vue, Vuex, Vue-Router, axios, Bootstrap 4
-* On server side : Node.js, Express, MongoDB, Mongoose
+* On server side : Node.js, Express, MongoDB, Mongoose, Passport
 
 It allows :
-* User authentification using JWT Token
+* User authentification using a JWT Token
 * CRUD operation on each user's own todo-list
 
 
@@ -24,6 +24,7 @@ It allows :
 * [Express.js](https://expressjs.com/) - Web Framework
 * [MongoDB](https://www.mongodb.com/) - NoSQL Database
 * [Mongoose](https://mongoosejs.com/) - ODM
+* [Passport](www.passportjs.org/) - Authentication
 * [Google Cloud](https://cloud.google.com/) - Cloud Web Hosting
 
 ## Authors
