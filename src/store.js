@@ -9,6 +9,8 @@ export default new Vuex.Store({
         todos: [],
         isAuthenticated: false,
         user: {},
+        apiSuccess: true,
+        apiMessage: ""
     },
     mutations: {
         getTodos (state, todos) {
@@ -58,6 +60,13 @@ export default new Vuex.Store({
             state.user = {}
             state.todos = []
             localStorage.removeItem("user")
+        },
+        API_SUCCESS (state) {
+            state.apiSuccess = true
+        },
+        API_FAILURE (state, error) {
+            state.apiSuccess = false
+            state.apiMessage = error
         }
     },
     actions: {
@@ -69,9 +78,10 @@ export default new Vuex.Store({
             }
             axios.get("/api/todos", config)
                 .then(response => {
+                    context.commit('API_SUCCESS')
                     context.commit('getTodos', response.data)
                 })
-                .catch(error => console.log(error))
+                .catch(error => context.commit('API_FAILURE', "Couldn't fetch todos"))
         },
         addTodo (context, name) {
             let config = {
@@ -88,9 +98,10 @@ export default new Vuex.Store({
             // POST it to server and into DB
             axios.post("/api/todos", newTodo, config)
                 .then(response => {
-                context.commit('addTodo', response.data)
+                    context.commit('API_SUCCESS')
+                    context.commit('addTodo', response.data)
                 })
-                .catch(error => console.log(error))
+                .catch(error => context.commit('API_FAILURE', "Couldn't add todo"))
         },
         updateTodo (context, id) {
             let config = {
@@ -107,9 +118,10 @@ export default new Vuex.Store({
             // PUT it to server and into DB
             axios.put(`api/todos/${id}`, updatedTodo, config)
                     .then(response => {
+                        context.commit('API_SUCCESS')
                         context.commit('updateTodo', response.data)
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => context.commit('API_FAILURE', "Couldn't update todo"))
         },
         deleteTodo (context, id) {
             let config = {
@@ -118,8 +130,11 @@ export default new Vuex.Store({
                 }
             }
             axios.delete(`api/todos/${id}`, config)
-                .catch(error => console.log(error))
-            context.commit('deleteTodo', id)
+                .then(() => {
+                    context.commit('API_SUCCESS')
+                    context.commit('deleteTodo', id)
+                })
+                .catch(error => context.commit('API_FAILURE', "Couldn't delete todo"))
         },
         deleteDoneTodos (context) {
             let config = {
@@ -128,16 +143,21 @@ export default new Vuex.Store({
                 }
             }
             axios.delete('api/todos/done', config)
-                .catch(error => console.log(error))
-            context.commit('deleteDoneTodos')
+                .then(() => {
+                    context.commit('API_SUCCESS')
+                    context.commit('deleteDoneTodos')
+                })
+                .catch(error => context.commit('API_FAILURE', "Couldn't delete all done todos"))
         },
         login (context, user) {            
             axios.post('login', user)
                 .then((response) => {
+                    context.commit('API_SUCCESS')
                     context.commit('login', response.data.user)
-                    context.dispatch('getTodosFromAPI')
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    context.commit('API_FAILURE', "There was an error while trying to log in")
+                })
         },
         loggedIn (context, user) {
             context.commit('loggedIn', user)
@@ -148,10 +168,10 @@ export default new Vuex.Store({
         register (context, user) {
             axios.post('register', user)
                 .then((response) => {
+                    context.commit('API_SUCCESS')
                     context.commit('login', response.data.user)
-                    context.dispatch('getTodosFromAPI')
                 })
-                .catch(error => console.log(error))
+                .catch(error => context.commit('API_FAILURE', "There was an error while trying to register"))
         }
     }
 })

@@ -46,7 +46,10 @@ export default {
   watch: {
       isAuthenticated () {
           if (!this.isAuthenticated) this.$router.push('/login')
-          else this.$router.push('/')
+          else {
+            this.$router.push('/')
+            this.getTodosFromAPI()
+          }
       }
   },
   computed: {

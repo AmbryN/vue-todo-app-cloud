@@ -2,6 +2,10 @@
 <div>
     <div class="row">
         <button v-if="hasDoneTodos" @click.stop="deleteDoneTodos()" class="btn btn-warning mx-auto mt-1">Delete done todos</button>
+        
+    </div>
+    <div class="row">
+        <div class="alert alert-warning col-10 offset-1 col-md-3 mx-auto text-center" v-if="!apiSuccess">{{ apiMessage }}</div>
     </div>
     <div class="row">
         <div v-if="todos.length > 0" class="col-10 offset-1 col-md-2 mx-auto mt-3">
@@ -23,7 +27,7 @@ export default {
     name: 'TodoList',
     computed: {
         ...mapState([
-            'todos'
+            'todos', 'apiSuccess', 'apiMessage'
         ]),
         hasDoneTodos () {
             for(let i=0; i<this.todos.length; i++) {
@@ -32,7 +36,7 @@ export default {
                 }
             }
             return false;
-        }
+        },
     },
     methods: {
         addTodo (name) {

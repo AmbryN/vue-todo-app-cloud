@@ -2,6 +2,11 @@
   <div class="col-8 offset-2 col-md-4 offset-md-4 mt-3">
     <form>
         <div class="row">
+            <div v-if="!apiSuccess" class="alert alert-warning text-center col-12 col-md-8 offset-md-2">
+                {{ apiMessage }}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="form-group">
                     <label for="email">Email address</label>
@@ -39,7 +44,7 @@ export default {
   },
   computed: {
       ...mapState([
-      'isAuthenticated'
+      'isAuthenticated', 'apiSuccess', "apiMessage"
     ]),
     isEmail () {
         if (this.email.search('@') != -1) {

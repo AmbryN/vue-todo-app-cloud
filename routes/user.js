@@ -10,25 +10,19 @@ module.exports = {
 
         if(!user.email) {
             return res.status(422).json({
-            errors: {
-                email: 'is required',
-            },
+                error: "email is required"
             });
         }
 
         if(!user.password) {
             return res.status(422).json({
-            errors: {
-                password: 'is required',
-            },
+                error: "password is required"
             });
         }
 
         if(user.password != user.confirmation) {
             return res.status(422).json({
-            errors: {
-                confirmation: 'doesn\'t match',
-            },
+                error: "confirmation doesn't match"
             });
         }
 
@@ -45,18 +39,14 @@ module.exports = {
         const { user } = req.body
         if(!user.email) {
             return res.status(422).json({
-            errors: {
-                email: 'is required',
-            },
-            });
+                error: "Email is required"
+            })
         }
 
         if(!user.password) {
             return res.status(422).json({
-            errors: {
-                password: 'is required',
-            },
-            });
+                error: "password is required",
+            })
         }
 
         User.findOne({ email: user.email }, (err, DBuser) => {
@@ -64,12 +54,11 @@ module.exports = {
                 next(err)
             }
             if (DBuser) {
-                
                 if (DBuser.validatePassword(user.password)) {
                     return res.json({ user: DBuser.toAuthJSON()})
                 }
             }
-            else return res.status(404).json({error: "User not found"})
+            return res.status(401).json({error: "E-mail or Pasword is incorrect"})
         })
         
     }

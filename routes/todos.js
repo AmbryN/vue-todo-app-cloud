@@ -10,10 +10,6 @@ const TodoSchema = new Schema({
     userId: {type: String}
 })
 
-TodoSchema.methods.addUser = function (userId) {
-    this.userId = userId
-}
-
 let Todo = mongoose.model('Todo', TodoSchema)
 
 module.exports = {
@@ -24,9 +20,7 @@ module.exports = {
         })
     },
     addTodo (req, res, next) {
-        const { payload: { id } } = req
         let newTodo = new Todo(req.body)
-        newTodo.addUser(id)
         console.log(newTodo)
         newTodo.save((err, todo) => {
             if (err) return next(err)
