@@ -24,7 +24,7 @@ It allows :
 * [Express.js](https://expressjs.com/) - Web Framework
 * [MongoDB](https://www.mongodb.com/) - NoSQL Database
 * [Mongoose](https://mongoosejs.com/) - ODM
-* [Passport](www.passportjs.org/) - Authentication
+* [Passport](http://www.passportjs.org/) - Authentication
 * [Google Cloud](https://cloud.google.com/) - Cloud Web Hosting
 
 ## Authors
