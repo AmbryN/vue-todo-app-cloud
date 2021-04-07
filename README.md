@@ -8,11 +8,6 @@ It allows :
 * User authentification using a JWT Token
 * CRUD operation on each user's own todo-list
 
-
-## Try it out
-
-[Click here to try it out](https://vue-todo-na.appspot.com) - (Register or use following credentials **email: test@test.com** - **password: test**)
-
 ## Built With
 
 * [Vue](https://vuejs.org/) - Front-end Framework
